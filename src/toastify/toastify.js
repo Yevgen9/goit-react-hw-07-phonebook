@@ -14,7 +14,6 @@ export const toastSuccess = () => {
   });
 };
 
-
 export const toastError = () => {
   return toast.error("Some filed is empty", {
     position: "top-center",
@@ -40,6 +39,3 @@ export const toastInfo = () => {
     theme: "dark",
   });
 };
-
-
-
