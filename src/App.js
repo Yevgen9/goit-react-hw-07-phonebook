@@ -1,9 +1,8 @@
 import React from "react";
-
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { getContacts } from "./redux/contactsSlice";
+import { getContacts } from "./services/requests";
 import ContactForm from "./Components/ContactForm/ContactForm";
 import ContactsList from "./Components/ContactList/ContactList";
 import Filter from "./Components/Filter/Filter";
@@ -20,7 +19,6 @@ export default function App() {
   return (
     <div className={s.App}>
       <div className={s.phonebook}>
-        
         <ContactForm />
         <Filter />
         <ContactsList />

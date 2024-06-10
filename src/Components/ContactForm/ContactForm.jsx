@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Input } from "antd";
-import { Button } from "antd";
+import { Button, Typography } from "antd";
 import { nanoid } from "nanoid";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
+// import "react-toastify/dist/ReactToastify.css";
 
 import { addContact } from "../../redux/contactsSlice";
 import s from "./ContactForm.module.scss";
+import { toastSuccess } from "../../toastify/success";
+import { toastInfo } from "../../toastify/info";
+import { toastError } from "../../toastify/error";
 
 const INITIAL_STATE = {
   name: "",
   phone: "",
 };
+
+const { Title, Text } = Typography;
 
 export default function ContactForm() {
   const [form, setForm] = useState(INITIAL_STATE);
@@ -42,16 +48,7 @@ export default function ContactForm() {
 
     dispatch(addContact(newContact));
 
-    toast.success(`You added a contact ${name}`, {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    toastSuccess();
 
     resetForm();
   };
@@ -59,16 +56,7 @@ export default function ContactForm() {
   const validateForm = () => {
     const { name, phone } = form;
     if (!name || !phone) {
-      toast.error("Some filed is empty", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toastError();
 
       return false;
     }
@@ -80,17 +68,7 @@ export default function ContactForm() {
 
     const isExistContact = !!contacts.find((contact) => contact.name === name);
 
-    isExistContact &&
-      toast.info(`${name} is already exist`, {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+    isExistContact && toastInfo();
 
     resetForm();
 
@@ -108,9 +86,10 @@ export default function ContactForm() {
       <ToastContainer />
 
       <form className={s.form} onSubmit={handleFormSubmit}>
-        <h1 className={s.title}>Phonebook</h1>
-        <p className={s.text}>Name</p>
-
+        <Title className={s.title}>Phonebook</Title>
+        <Text className={s.text} strong>
+          Name
+        </Text>
         <Input
           value={name}
           onChange={handleChangeForm}
@@ -119,7 +98,9 @@ export default function ContactForm() {
           name="name"
           placeholder="Enter name"
         />
-        <p className={s.text}>Number</p>
+        <Text className={s.text} strong>
+          Number
+        </Text>
         <Input
           id={phoneInputId}
           type="tel"
@@ -128,7 +109,6 @@ export default function ContactForm() {
           value={phone}
           onChange={handleChangeForm}
         />
-
         <Button htmlType="submit" className={s.btn} type="primary" block>
           Add Contact
         </Button>

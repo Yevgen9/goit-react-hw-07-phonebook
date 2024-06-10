@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Button, Flex } from "antd";
+import { Button, Flex, Typography } from "antd";
 
 import { deleteContact } from "../../redux/contactsSlice";
 import s from "../ContactList/ContactList.module.scss";
+
+const { Text } = Typography;
 
 const ContactsList = () => {
   const { contacts } = useSelector((state) => state.contacts);
@@ -20,8 +22,8 @@ const ContactsList = () => {
       <ul className={s.list}>
         {filteredContacts.map((contact) => (
           <li key={contact.id} className={s.item}>
-            <p>{contact.name} :</p>
-            <p className={s.textNumber}>{contact.phone}</p>
+            <Text strong>{contact.name} :</Text>
+            <Text strong>{contact.phone}</Text>
 
             <Flex gap="small" wrap>
               <Button
