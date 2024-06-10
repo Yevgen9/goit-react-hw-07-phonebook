@@ -22,7 +22,7 @@ export default function App() {
       <h1>Phonebook</h1>
       <ContactForm />
       <h2>Contacts</h2>
-      <p>Find contacts by name</p>
+      <p>Find contact by name</p>
       <Filter />
       <ContactsList />
     </div>
