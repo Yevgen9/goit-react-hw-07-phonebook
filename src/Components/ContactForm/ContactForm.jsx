@@ -6,13 +6,10 @@ import { Button, Typography } from "antd";
 import { nanoid } from "nanoid";
 import { ToastContainer } from "react-toastify";
 
-
-
 import { addContact } from "../../redux/contactsSlice";
+import { toastSuccess, toastInfo, toastError } from "../../toastify/toastify";
+
 import s from "./ContactForm.module.scss";
-import { toastSuccess } from "../../toastify/success";
-import { toastInfo } from "../../toastify/info";
-import { toastError } from "../../toastify/error";
 
 const INITIAL_STATE = {
   name: "",
