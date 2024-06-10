@@ -10,7 +10,7 @@ import s from "./ContactForm.module.scss";
 
 const INITIAL_STATE = {
   name: "",
-  number: "",
+  phone: "",
 };
 
 export default function ContactForm() {
@@ -27,12 +27,12 @@ export default function ContactForm() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    const { name, number } = form;
+    const { name, phone } = form;
 
     const newContact = {
       id: nanoid(),
       name: name,
-      number: number,
+      phone: phone,
     };
 
     const isValidatedForm = validateForm();
@@ -55,8 +55,8 @@ export default function ContactForm() {
   };
 
   const validateForm = () => {
-    const { name, number } = form;
-    if (!name || !number) {
+    const { name, phone } = form;
+    if (!name || !phone) {
       toast.error("Some filed is empty", {
         position: "top-center",
         autoClose: 1500,
@@ -74,6 +74,8 @@ export default function ContactForm() {
   };
 
   const handleCheckContact = () => {
+    const { name } = form;
+
     const isExistContact = !!contacts.find((contact) => contact.name === name);
 
     isExistContact &&
@@ -95,10 +97,10 @@ export default function ContactForm() {
 
   const resetForm = () => setForm(INITIAL_STATE);
 
-  const { name, number } = form;
+  const { name, phone } = form;
 
   const nameInputId = nanoid();
-  const numberInputId = nanoid();
+  const phoneInputId = nanoid();
   return (
     <div className={s.formContainer}>
       <ToastContainer />
@@ -115,11 +117,11 @@ export default function ContactForm() {
 
         <p className={s.text}>Number</p>
         <input
-          id={numberInputId}
+          id={phoneInputId}
           type="tel"
-          name="number"
+          name="phone"
           placeholder="Enter phone number"
-          value={number}
+          value={phone}
           onChange={handleChangeForm}
         />
 

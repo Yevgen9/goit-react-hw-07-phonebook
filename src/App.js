@@ -1,10 +1,13 @@
+import React from "react";
+
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getContacts } from "./redux/contactsSlice";
 
+import { getContacts } from "./redux/contactsSlice";
 import ContactForm from "./Components/ContactForm/ContactForm";
 import ContactsList from "./Components/ContactList/ContactList";
 import Filter from "./Components/Filter/Filter";
+
 import "./App.module.scss";
 
 export default function App() {
