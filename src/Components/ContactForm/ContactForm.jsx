@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 import { ToastContainer } from "react-toastify";
 
 import { addContact } from "../../redux/contactsSlice";
-import { toastSuccess, toastInfo, toastError } from "../../toastify/toastify";
+import { showToast } from "../../toastify/toastify";
 
 import s from "./ContactForm.module.scss";
 
@@ -45,7 +45,7 @@ export default function ContactForm() {
 
     dispatch(addContact(newContact));
 
-    toastSuccess();
+    showToast("success", "You added a contact");
 
     resetForm();
   };
@@ -53,7 +53,7 @@ export default function ContactForm() {
   const validateForm = () => {
     const { name, phone } = form;
     if (!name || !phone) {
-      toastError();
+      showToast("error", "Some field is empty");
 
       return false;
     }
@@ -65,7 +65,7 @@ export default function ContactForm() {
 
     const isExistContact = !!contacts.find((contact) => contact.name === name);
 
-    isExistContact && toastInfo();
+    isExistContact && showToast("info", "Contact already exists");
 
     resetForm();
 
