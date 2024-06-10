@@ -30,7 +30,7 @@ export default function ContactForm() {
     const { name, phone } = form;
 
     const newContact = {
-      id: nanoid(),
+      id: nanoid(5),
       name: name,
       phone: phone,
     };
