@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { Input } from "antd";
+import { Button } from "antd";
 import { nanoid } from "nanoid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -104,19 +106,21 @@ export default function ContactForm() {
   return (
     <div className={s.formContainer}>
       <ToastContainer />
+
       <form className={s.form} onSubmit={handleFormSubmit}>
+        <h1 className={s.title}>Phonebook</h1>
         <p className={s.text}>Name</p>
-        <input
+
+        <Input
+          value={name}
+          onChange={handleChangeForm}
           id={nameInputId}
           type="text"
           name="name"
-          placeholder="Enter text"
-          value={name}
-          onChange={handleChangeForm}
+          placeholder="Enter name"
         />
-
         <p className={s.text}>Number</p>
-        <input
+        <Input
           id={phoneInputId}
           type="tel"
           name="phone"
@@ -125,9 +129,9 @@ export default function ContactForm() {
           onChange={handleChangeForm}
         />
 
-        <button className={s.btn} type="submit">
+        <Button htmlType="submit" className={s.btn} type="primary" block>
           Add Contact
-        </button>
+        </Button>
       </form>
     </div>
   );

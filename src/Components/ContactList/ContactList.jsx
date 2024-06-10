@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { Button, Flex } from "antd";
+
 import { deleteContact } from "../../redux/contactsSlice";
 import s from "../ContactList/ContactList.module.scss";
 
@@ -14,18 +16,23 @@ const ContactsList = () => {
   );
 
   return (
-    <div >
+    <div>
       <ul className={s.list}>
         {filteredContacts.map((contact) => (
           <li key={contact.id} className={s.item}>
-            <p>{contact.name}:</p>
+            <p>{contact.name} :</p>
             <p className={s.textNumber}>{contact.phone}</p>
-            <button
-              className={s.btnDel}
-              onClick={() => dispatch(deleteContact(contact.id))}
-            >
-              Delete
-            </button>
+
+            <Flex gap="small" wrap>
+              <Button
+                onClick={() => dispatch(deleteContact(contact.id))}
+                size="small"
+                type="primary"
+                className={s.btnDel}
+              >
+                Delete Contact
+              </Button>
+            </Flex>
           </li>
         ))}
       </ul>

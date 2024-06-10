@@ -4,7 +4,7 @@ p {
   margin: 0;
   padding: 0;
 
-  text-align: center;
+  // text-align: center;
 }
 
 li {
@@ -12,7 +12,19 @@ li {
 }
 
 .App {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(239, 219, 151, 0.524);
+
+  border-radius: 5px;
 }
+.phonebook {
+  max-width: 800px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  border-radius: 5px;
+
+  background-color: rgba(0, 128, 128, 0.524);
+}
+
+
