@@ -6,7 +6,7 @@ import { Button, Typography } from "antd";
 import { nanoid } from "nanoid";
 import { ToastContainer } from "react-toastify";
 
-// import "react-toastify/dist/ReactToastify.css";
+
 
 import { addContact } from "../../redux/contactsSlice";
 import s from "./ContactForm.module.scss";
