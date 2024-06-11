@@ -14,7 +14,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(getContacts());
-  });
+  }, [dispatch]);
 
   return (
     <div className={s.App}>
